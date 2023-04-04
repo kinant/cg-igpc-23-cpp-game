@@ -13,6 +13,7 @@
 #include "Money.h"
 
 #include "AudioManager.h"
+#include "Utility.h"
 
 #include "StateMachineExampleGame.h"
 
@@ -110,8 +111,11 @@ bool GameplayState::Update(bool processInput)
         if (m_SkipFrameCount > kFramesToSkip)
         {
             m_SkipFrameCount = 0;
+
+            Utility::WriteHighScore(m_Player.GetMoney());
+
             AudioManager::GetInstance()->PlayWinSound();
-            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
+            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Win);
         }
     }
 
@@ -143,7 +147,7 @@ void GameplayState::HandleCollision(const int NewPlayerX, const int NewPlayerY)
             if (m_Player.GetLives() < 0)
             {
                 AudioManager::GetInstance()->PlayLoseSound();
-                m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
+                m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Lose);
             }
 
             break;

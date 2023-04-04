@@ -4,6 +4,8 @@
 #include "GameplayState.h"
 #include "SettingsState.h"
 #include "HighScoreState.h"
+#include "WinState.h"
+#include "LoseState.h"
 
 #include "Game.h"
 
@@ -87,6 +89,16 @@ void StateMachineExampleGame::LoadScene(SceneName scene)
 		case SceneName::Highscore:
 		{
 			m_pNewState = new HighScoreState(this);
+			break;
+		}
+		case SceneName::Win:
+		{
+			m_pNewState = new WinState(this);
+			break;
+		}
+		case SceneName::Lose:
+		{
+			m_pNewState = new LoseState(this);
 			break;
 		}
 		default:
