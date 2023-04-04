@@ -10,7 +10,7 @@ class Level
 {
 	public:
 
-		static constexpr char WAL = (char)219;
+		static constexpr char WAL = static_cast<char>(219);
 
 		Level();
 		~Level();

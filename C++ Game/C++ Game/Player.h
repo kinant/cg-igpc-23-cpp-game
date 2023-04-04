@@ -19,6 +19,7 @@ class Player : public AActor
 		void PickupKey(Key* Key);
 		void UseKey();
 		void DropKey();
+		Key* GetKey() { return m_pCurrentKey; }
 
 		void AddMoney(const int Money) { m_Money += Money; }
 		int GetMoney() const { return m_Money; }

@@ -23,7 +23,7 @@ bool WinState::Update(bool ProcessInput)
 	return false;
 }
 
-void WinState::Draw() const
+void WinState::Draw()
 {
 	system("CLS");
 	cout << endl << endl << endl;

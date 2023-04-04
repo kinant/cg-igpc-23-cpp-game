@@ -50,7 +50,7 @@ bool MainMenuState::Update(bool ProcessInput)
 	return bShouldQuit;
 }
 
-void MainMenuState::Draw() const
+void MainMenuState::Draw()
 {
 	system("CLS");
 	cout << endl << endl << endl;

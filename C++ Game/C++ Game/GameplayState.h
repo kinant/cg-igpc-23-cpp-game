@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "Level.h"
 
+#include <Windows.h>
+
 class StateMachineExampleGame;
 
 class GameplayState : public GameState
@@ -12,7 +14,9 @@ class GameplayState : public GameState
 
 		virtual void Enter() override;
 		virtual bool Update(bool processInput = true) override;
-		virtual void Draw() const override;
+		virtual void Draw() override;
+
+		static constexpr int kHUDWidth = 53;
 
 	private:
 		StateMachineExampleGame* m_pOwner;
@@ -26,5 +30,6 @@ class GameplayState : public GameState
 
 		bool Load();
 		void HandleCollision(const int PlayerX, const int PlayerY);
+		void DrawHUD(const HANDLE& console);
 };
 

@@ -2,7 +2,6 @@
 
 #include "Game.h"
 #include <conio.h>
-#include <Windows.h>
 #include <fstream>
 #include <assert.h>
 
@@ -233,7 +232,7 @@ void GameplayState::HandleCollision(const int NewPlayerX, const int NewPlayerY)
     }
 }
 
-void GameplayState::Draw() const
+void GameplayState::Draw()
 {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     system("CLS");
@@ -252,4 +251,54 @@ void GameplayState::Draw() const
     CurrentCursorPosition.X = 0;
     CurrentCursorPosition.Y = m_Level.GetHeight();
     SetConsoleCursorPosition(console, CurrentCursorPosition);
+
+    DrawHUD(console);
+}
+
+void GameplayState::DrawHUD(const HANDLE& console)
+{
+    cout << endl;
+
+    // Top border
+    for (int i = 0; i < kHUDWidth; i++) 
+    {
+        cout << Level::WAL;
+    }
+    cout << endl;
+
+    // Left Border
+    cout << Level::WAL;
+
+    cout << " wasd-move " << Level::WAL << " z-drop key " << Level::WAL;
+    cout << " $: " << m_Player.GetMoney() << " " << Level::WAL;
+    cout << " lives: " << m_Player.GetLives() << " " << Level::WAL;
+    cout << " key: ";
+
+    if (m_Player.HasKey()) 
+    {
+        m_Player.GetKey()->Draw();
+    }
+    else 
+    {
+        cout << " "; 
+    }
+
+    // Right Border
+    CONSOLE_SCREEN_BUFFER_INFO Csbi;
+    GetConsoleScreenBufferInfo(console, &Csbi);
+
+    COORD pos;
+    pos.X = kHUDWidth - 1;
+    pos.Y = Csbi.dwCursorPosition.Y;
+    SetConsoleCursorPosition(console, pos);
+
+    cout << Level::WAL;
+    cout << endl;
+
+    // Bottom border
+    for (int i = 0; i < kHUDWidth; i++)
+    {
+        cout << Level::WAL;
+    }
+    cout << endl;
 }

@@ -26,7 +26,7 @@ bool HighScoreState::Update(bool ProcessInput)
 	return false;
 }
 
-void HighScoreState::Draw() const
+void HighScoreState::Draw()
 {
 	system("CLS");
 	cout << endl << endl << endl;

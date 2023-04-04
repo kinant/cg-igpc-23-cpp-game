@@ -9,7 +9,7 @@ class SettingsState : public GameState
 		SettingsState(StateMachineExampleGame* pOwner);
 		~SettingsState() = default;
 		virtual bool Update(bool ProcessInput = true) override;
-		virtual void Draw() const override;
+		virtual void Draw() override;
 
 	private:
 		StateMachineExampleGame* m_pOwner;

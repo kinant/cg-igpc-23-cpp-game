@@ -23,7 +23,7 @@ bool LoseState::Update(bool ProcessInput)
 	return false;
 }
 
-void LoseState::Draw() const
+void LoseState::Draw()
 {
 	system("CLS");
 	cout << endl << endl << endl;

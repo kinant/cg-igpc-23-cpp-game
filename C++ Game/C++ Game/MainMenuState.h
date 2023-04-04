@@ -9,7 +9,7 @@ class MainMenuState : public GameState
 		MainMenuState(StateMachineExampleGame* pOwner);
 		~MainMenuState() = default;
 		virtual bool Update(bool ProcessInput = true) override;
-		virtual void Draw() const override;
+		virtual void Draw() override;
 
 	private:
 		StateMachineExampleGame* m_pOwner;

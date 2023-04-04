@@ -9,7 +9,7 @@ class LoseState : public GameState
 		LoseState(StateMachineExampleGame* pOwner);
 		~LoseState() = default;
 		virtual bool Update(bool ProcessInput = true) override;
-		virtual void Draw() const override;
+		virtual void Draw() override;
 
 	private:
 		StateMachineExampleGame* m_pOwner;

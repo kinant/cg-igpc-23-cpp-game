@@ -40,7 +40,7 @@ bool SettingsState::Update(bool ProcessInput)
 	return false;
 }
 
-void SettingsState::Draw() const
+void SettingsState::Draw()
 {
 	system("CLS");
 	cout << endl << endl << endl;
