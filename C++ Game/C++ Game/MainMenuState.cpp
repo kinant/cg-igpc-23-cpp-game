@@ -11,7 +11,9 @@ using std::endl;
 constexpr int kEscapeKey = 27;
 
 constexpr char kPlay = '1';
-constexpr char kQuit = '2';
+constexpr char kHighScore = '2';
+constexpr char kSettings = '3';
+constexpr char kQuit = '4';
 
 MainMenuState::MainMenuState(StateMachineExampleGame* pOwner)
 	: m_pOwner(pOwner)
@@ -35,6 +37,14 @@ bool MainMenuState::Update(bool ProcessInput)
 		{
 			m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Gameplay);
 		}
+		else if (static_cast<char>(Input) == kHighScore)
+		{
+			m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Highscore);
+		}
+		else if (static_cast<char>(Input) == kSettings)
+		{
+			m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Settings);
+		}
 	}
 
 	return bShouldQuit;
@@ -46,6 +56,8 @@ void MainMenuState::Draw() const
 	cout << endl << endl << endl;
 	cout << "           - - - MAIN MENU - - -" << endl << endl;
 	cout << "               " << kPlay << ". Play " << endl;
+	cout << "               " << kHighScore << ". High Scores " << endl;
+	cout << "               " << kSettings << ". Settings " << endl;
 	cout << "               " << kQuit << ". Quit " << endl;
 }
 

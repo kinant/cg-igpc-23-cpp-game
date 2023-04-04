@@ -1,17 +1,20 @@
 #pragma once
 #include "GameState.h"
+#include <set>
 
 class StateMachineExampleGame;
 
-class SettingsState : public GameState
+class HighScoreState : public GameState
 {
 	public:
-		SettingsState(StateMachineExampleGame* pOwner);
-		~SettingsState() = default;
+		HighScoreState(StateMachineExampleGame* pOwner);
+		~HighScoreState() = default;
 		virtual bool Update(bool ProcessInput = true) override;
 		virtual void Draw() const override;
 
 	private:
 		StateMachineExampleGame* m_pOwner;
+		std::set<int> m_HighScores;
+		
 };
 

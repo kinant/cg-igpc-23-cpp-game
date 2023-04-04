@@ -14,12 +14,12 @@ constexpr int kEscapeKey = 27;
 constexpr char kSound = '1';
 constexpr char kMainMenu = '2';
 
-SettingState::SettingState(StateMachineExampleGame* pOwner)
+SettingsState::SettingsState(StateMachineExampleGame* pOwner)
 	: m_pOwner(pOwner)
 {
 }
 
-bool SettingState::Update(bool ProcessInput)
+bool SettingsState::Update(bool ProcessInput)
 {
 
 	if (ProcessInput)
@@ -40,7 +40,7 @@ bool SettingState::Update(bool ProcessInput)
 	return false;
 }
 
-void SettingState::Draw() const
+void SettingsState::Draw() const
 {
 	system("CLS");
 	cout << endl << endl << endl;
