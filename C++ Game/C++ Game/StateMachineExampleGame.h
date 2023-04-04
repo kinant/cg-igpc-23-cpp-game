@@ -11,7 +11,11 @@ class StateMachineExampleGame : public GameStateMachine
 		{
 			None,
 			MainMenu,
-			Gameplay
+			Gameplay,
+			Settings,
+			Highscore,
+			Lose,
+			Win
 		};
 
 	private:
