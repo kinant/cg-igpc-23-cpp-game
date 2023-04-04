@@ -101,23 +101,24 @@ bool GameplayState::Update(bool processInput)
         {
             HandleCollision(NewPlayerX, NewPlayerY);
         }
+    }
 
-        if (m_bBeatGame) 
+    if (m_bBeatGame)
+    {
+        ++m_SkipFrameCount;
+
+        if (m_SkipFrameCount > kFramesToSkip)
         {
-            ++m_SkipFrameCount;
-
-            if (m_SkipFrameCount > kFramesToSkip) 
-            {
-                m_SkipFrameCount = 0;
-                AudioManager::GetInstance()->PlayWinSound();
-                m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
-            }
+            m_SkipFrameCount = 0;
+            AudioManager::GetInstance()->PlayWinSound();
+            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
         }
     }
+
     return false;
 }
 
-bool GameplayState::HandleCollision(const int NewPlayerX, const int NewPlayerY)
+void GameplayState::HandleCollision(const int NewPlayerX, const int NewPlayerY)
 {
     bool bIsGameDone = false;
 

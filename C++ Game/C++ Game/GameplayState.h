@@ -25,6 +25,6 @@ class GameplayState : public GameState
 		static constexpr int kFramesToSkip = 2;
 
 		bool Load();
-		bool HandleCollision(const int PlayerX, const int PlayerY);
+		void HandleCollision(const int PlayerX, const int PlayerY);
 };
 

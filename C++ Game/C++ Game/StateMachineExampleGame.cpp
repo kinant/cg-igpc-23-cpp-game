@@ -59,8 +59,6 @@ void StateMachineExampleGame::CleanUp()
 		m_pCurrentState->Exit();
 		delete m_pCurrentState;
 	}
-
-	return true;
 }
 
 void StateMachineExampleGame::LoadScene(SceneName scene)

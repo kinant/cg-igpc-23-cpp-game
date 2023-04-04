@@ -137,6 +137,7 @@
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Money.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="StateMachineExampleGame.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Goal.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Money.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />

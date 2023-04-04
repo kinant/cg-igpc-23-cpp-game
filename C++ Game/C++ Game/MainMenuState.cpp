@@ -46,7 +46,7 @@ void MainMenuState::Draw() const
 	system("CLS");
 	cout << endl << endl << endl;
 	cout << "           - - - MAIN MENU - - -" << endl << endl;
-	cout << "				" << kPlay << ". Play " << endl;
-	cout << "				" << kQuit << ". Quit " << endl;
+	cout << "               " << kPlay << ". Play " << endl;
+	cout << "               " << kQuit << ". Quit " << endl;
 }
 

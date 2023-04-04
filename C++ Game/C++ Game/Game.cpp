@@ -14,7 +14,7 @@ void Game::Initialize(GameStateMachine* pStateMachine)
 	if (pStateMachine != nullptr) 
 	{
 		pStateMachine->Init();
-		m_pGameStateMachine = m_pGameStateMachine;
+		m_pGameStateMachine = pStateMachine;
 	}
 }
 
