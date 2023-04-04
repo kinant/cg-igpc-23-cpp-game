@@ -1,20 +1,6 @@
 #include "Game.h"
-#include <conio.h>
-#include <Windows.h>
-#include <fstream>
-#include <assert.h>
-
-#include "Enemy.h"
-#include "Key.h"
-#include "Door.h"
-#include "Goal.h"
-#include "Money.h"
-
-#include "AudioManager.h"
 
 Game::Game()
-	: m_bIsGameOver(false)
-    , m_bUserQuit(false)
 {
 
 }
@@ -23,15 +9,43 @@ Game::~Game()
 
 }
 
-
-void Game::Run() 
+void Game::Initialize(GameStateMachine* pStateMachine)
 {
-	Draw();
-
-	m_bIsGameOver = Update();
-
-	if (m_bIsGameOver) 
+	if (pStateMachine != nullptr) 
 	{
-		Draw();
+		pStateMachine->Init();
+		m_pGameStateMachine = m_pGameStateMachine;
 	}
 }
+
+void Game::RunGameLoop()
+{
+	bool bIsGameOver = false;
+
+	while (!bIsGameOver) 
+	{
+		Update(false);
+		Draw();
+		bIsGameOver = Update();
+	}
+	Draw();
+}
+
+void Game::Deinitialize()
+{
+	if (m_pGameStateMachine) 
+	{
+		m_pGameStateMachine->CleanUp();
+	}
+}
+
+bool Game::Update(bool processInput)
+{
+	return m_pGameStateMachine->UpdateCurrentState(processInput);
+}
+
+void Game::Draw() const
+{
+	m_pGameStateMachine->DrawCurrentState();
+}
+

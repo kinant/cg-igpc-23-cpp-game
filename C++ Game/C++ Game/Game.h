@@ -1,6 +1,5 @@
 #pragma once
-#include "Player.h"
-#include "Level.h"
+#include "GameStateMachine.h"
 
 class Game 
 {
@@ -8,9 +7,12 @@ class Game
 		Game();
 		~Game();
 		
-		void Run();
+		void Initialize(GameStateMachine* pStateMachine);
+		void RunGameLoop();
+		void Deinitialize();
 
 	private:
-		bool Update();
+		GameStateMachine* m_pGameStateMachine = nullptr;
+		bool Update(bool processInput = true);
 		void Draw() const;
 };
