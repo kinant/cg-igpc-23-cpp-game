@@ -5,7 +5,6 @@
 
 Door::Door(const int X, const int Y, const ActorColor ClosedColor, const ActorColor OtherColor)
 	: AActor(X, Y)
-	, m_bIsOpen(false)
 	, m_ClosedColor(ClosedColor)
 {
 

@@ -4,10 +4,6 @@
 
 Enemy::Enemy(const int X, const int Y, const int DeltaX, const int DeltaY) 
 	: AActor(X, Y)
-	, m_CurrentMovementX(0)
-	, m_CurrentMovementY(0)
-	, m_DirectionX(0)
-	, m_DirectionY(0)
 	, m_MovementInX(DeltaX)
 	, m_MovementInY(DeltaY)
 {

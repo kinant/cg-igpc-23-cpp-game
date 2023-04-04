@@ -19,7 +19,7 @@ class GameplayState : public GameState
 		static constexpr int kHUDWidth = 53;
 
 	private:
-		StateMachineExampleGame* m_pOwner;
+		StateMachineExampleGame* m_pOwner = nullptr;
 
 		Player m_Player;
 		Level m_Level;

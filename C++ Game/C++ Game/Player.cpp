@@ -8,9 +8,6 @@
 
 Player::Player() 
 	: AActor(0, 0)
-	, m_pCurrentKey(nullptr)
-	, m_Money(0)
-	, m_Lives(kStartingNumberOfLives)
 {
 
 }

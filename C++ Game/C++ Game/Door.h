@@ -15,7 +15,7 @@ public:
 	ActorColor GetColor() const { return m_ClosedColor;  }
 
 private:
-	bool m_bIsOpen;
+	bool m_bIsOpen = false;
 	ActorColor m_ClosedColor;
 	static constexpr char DOR = (char)219;
 };

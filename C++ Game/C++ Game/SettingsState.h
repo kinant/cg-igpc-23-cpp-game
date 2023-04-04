@@ -12,6 +12,6 @@ class SettingsState : public GameState
 		virtual void Draw() override;
 
 	private:
-		StateMachineExampleGame* m_pOwner;
+		StateMachineExampleGame* m_pOwner = nullptr;
 };
 

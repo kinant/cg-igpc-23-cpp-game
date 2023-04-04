@@ -50,6 +50,6 @@ class AActor
 	protected:
 		Point* m_pPosition;
 
-		bool m_bIsActive;
+		bool m_bIsActive =  true;
 		ActorColor m_Color;
 };

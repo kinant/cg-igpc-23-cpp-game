@@ -18,9 +18,6 @@ using std::endl;
 using std::ifstream;
 
 Level::Level()
-	: m_pLevelData(nullptr)
-	, m_Width(0)
-	, m_Height(0)
 {
 }
 

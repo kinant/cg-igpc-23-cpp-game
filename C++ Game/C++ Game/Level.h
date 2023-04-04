@@ -27,9 +27,9 @@ class Level
 		AActor* UpdateActors(int X, int Y);
 
 	private:
-		char* m_pLevelData;
-		int m_Height;
-		int m_Width;
+		char* m_pLevelData =  nullptr;
+		int m_Height = 0;
+		int m_Width = 0;
 
 		std::vector<AActor*> m_pActors;
 

@@ -2,7 +2,6 @@
 
 AActor::AActor(int X, int Y, ActorColor Color) 
 	: m_pPosition(new Point(X, Y))
-	, m_bIsActive(true)
 	, m_Color(Color)
 {
 	

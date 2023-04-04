@@ -31,7 +31,7 @@ class Player : public AActor
 		virtual void Draw() const override;
 
 	private:
-		Key* m_pCurrentKey;
-		int m_Money;
-		int m_Lives;
+		Key* m_pCurrentKey = nullptr;
+		int m_Money = 0;
+		int m_Lives = kStartingNumberOfLives;
 };

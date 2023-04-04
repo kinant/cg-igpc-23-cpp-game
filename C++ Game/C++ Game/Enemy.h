@@ -14,11 +14,11 @@ class Enemy : public AActor
 		int m_MovementInX;
 		int m_MovementInY;
 
-		int m_CurrentMovementX;
-		int m_CurrentMovementY;
+		int m_CurrentMovementX = 0;
+		int m_CurrentMovementY = 0;
 
-		int m_DirectionX;
-		int m_DirectionY;
+		int m_DirectionX = 0;
+		int m_DirectionY = 0;
 
 		void UpdateDirection(int& Current, int& Direction, const int& Movement);
 };

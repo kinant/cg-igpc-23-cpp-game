@@ -13,8 +13,8 @@ class HighScoreState : public GameState
 		virtual void Draw() override;
 
 	private:
-		StateMachineExampleGame* m_pOwner;
-		std::set<int> m_HighScores;
+		StateMachineExampleGame* m_pOwner = nullptr;
+		std::set<int> m_HighScores{};
 		
 };
 
