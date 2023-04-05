@@ -1,0 +1,23 @@
+1. Need a refresh on forward declaring classes. Previously it was used once, for the key. But in later modules it is used much more extensively. 
+
+2. Using a default for destructor. They just use it with no explanation as to what it does. Would like to know what it is/does?
+   Example: virtual ~GameState() = default;
+
+3. Need help explaining this:
+	std::string FileName = "highscores.txt";
+	std::ifstream HighScoreFile(FileName);
+	std::istream_iterator<int> Start(HighScoreFile), End;
+	std::set<int> HighScores(Start, End);
+
+	//..
+	std::ostream_iterator<int> Output_Iterator(OutFile, "\n");
+	std::copy(HighScores.begin(), HighScores.end(), Output_Iterator);
+	OutFile.close();
+
+Actually, it would be helpful if we could do a walkthrough of the "Utility.h" file. 
+
+3. What is going on in this loop? Reverse begin and reverse end? 
+	for (auto i = m_HighScores.rbegin(); i != m_HighScores.rend(); ++i) 
+	{
+		cout << "            " << *i << endl;
+	}
