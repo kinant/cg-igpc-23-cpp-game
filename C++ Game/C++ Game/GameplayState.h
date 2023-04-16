@@ -31,7 +31,7 @@ class GameplayState : public GameState
 		int m_SkipFrameCount = 0;
 		static constexpr int kFramesToSkip = 2;
 
-		int m_currentLevel = 0;
+		int m_CurrentLevel = 0;
 		std::vector<std::string> m_LevelNames;
 
 		bool Load();

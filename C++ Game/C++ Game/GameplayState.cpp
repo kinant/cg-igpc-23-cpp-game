@@ -56,7 +56,7 @@ bool GameplayState::Load()
 
     m_pLevel = new Level();
 
-	return m_pLevel->Load(m_LevelNames.at(m_currentLevel), m_Player.GetXPositionPointer(), m_Player.GetYPositionPointer());
+	return m_pLevel->Load(m_LevelNames.at(m_CurrentLevel), m_Player.GetXPositionPointer(), m_Player.GetYPositionPointer());
 }
 
 void GameplayState::Enter() 
@@ -126,12 +126,22 @@ bool GameplayState::Update(bool processInput)
 
         if (m_SkipFrameCount > kFramesToSkip)
         {
+            m_bBeatLevel = false;
             m_SkipFrameCount = 0;
 
-            Utility::WriteHighScore(m_Player.GetMoney());
+            ++m_CurrentLevel;
 
-            AudioManager::GetInstance()->PlayWinSound();
-            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Win);
+            if (m_CurrentLevel == m_LevelNames.size()) 
+            {
+                Utility::WriteHighScore(m_Player.GetMoney());
+
+                AudioManager::GetInstance()->PlayWinSound();
+                m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Win);
+            }
+            else 
+            {
+                Load();
+            }
         }
     }
 
