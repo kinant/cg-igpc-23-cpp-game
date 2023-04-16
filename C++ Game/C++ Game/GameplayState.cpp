@@ -35,11 +35,28 @@ static constexpr int kEscapeKey = 27;
 GameplayState::GameplayState(StateMachineExampleGame* pOwner)
 	: m_pOwner(pOwner)
 {
+    m_LevelNames.emplace_back("Level1.txt");
+    m_LevelNames.emplace_back("Level2.txt");
+    m_LevelNames.emplace_back("Level3.txt");
+}
+
+GameplayState::~GameplayState() 
+{
+    delete m_pLevel;
+    m_pLevel = nullptr;
 }
 
 bool GameplayState::Load()
 {
-	return m_Level.Load("Level3.txt", m_Player.GetXPositionPointer(), m_Player.GetYPositionPointer());
+    if (m_pLevel) 
+    {
+        delete m_pLevel;
+        m_pLevel = nullptr;
+    }
+
+    m_pLevel = new Level();
+
+	return m_pLevel->Load(m_LevelNames.at(m_currentLevel), m_Player.GetXPositionPointer(), m_Player.GetYPositionPointer());
 }
 
 void GameplayState::Enter() 
@@ -49,7 +66,7 @@ void GameplayState::Enter()
 
 bool GameplayState::Update(bool processInput)
 {
-    if (processInput && !m_bBeatGame)
+    if (processInput && !m_bBeatLevel)
     {
         int Input = _getch();
         int ArrowInput = 0;
@@ -103,7 +120,7 @@ bool GameplayState::Update(bool processInput)
         }
     }
 
-    if (m_bBeatGame)
+    if (m_bBeatLevel)
     {
         ++m_SkipFrameCount;
 
@@ -125,7 +142,7 @@ void GameplayState::HandleCollision(const int NewPlayerX, const int NewPlayerY)
 {
     bool bIsGameDone = false;
 
-    AActor* CollidedActor = m_Level.UpdateActors(NewPlayerX, NewPlayerY);
+    AActor* CollidedActor = m_pLevel->UpdateActors(NewPlayerX, NewPlayerY);
 
     if (CollidedActor != nullptr && CollidedActor->IsActive())
     {
@@ -214,7 +231,7 @@ void GameplayState::HandleCollision(const int NewPlayerX, const int NewPlayerY)
 
             CollidedGoal->Remove();
             m_Player.SetPosition(NewPlayerX, NewPlayerY);
-            m_bBeatGame = true;
+            m_bBeatLevel = true;
 
             break;
         }
@@ -222,11 +239,11 @@ void GameplayState::HandleCollision(const int NewPlayerX, const int NewPlayerY)
             break;
         }
     }
-    else if (m_Level.IsSpace(NewPlayerX, NewPlayerY)) // no collision
+    else if (m_pLevel->IsSpace(NewPlayerX, NewPlayerY)) // no collision
     {
         m_Player.SetPosition(NewPlayerX, NewPlayerY);
     }
-    else if (m_Level.IsWall(NewPlayerX, NewPlayerY))
+    else if (m_pLevel->IsWall(NewPlayerX, NewPlayerY))
     {
         AudioManager::GetInstance()->PlayDoorClosedSound();
     }
@@ -237,7 +254,7 @@ void GameplayState::Draw()
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     system("CLS");
 
-    m_Level.Draw();
+    m_pLevel->Draw();
 
     // set cursor for player
     COORD ActorCursorPosition;
@@ -249,7 +266,7 @@ void GameplayState::Draw()
     // set cursor to the end of the level
     COORD CurrentCursorPosition;
     CurrentCursorPosition.X = 0;
-    CurrentCursorPosition.Y = m_Level.GetHeight();
+    CurrentCursorPosition.Y = m_pLevel->GetHeight();
     SetConsoleCursorPosition(console, CurrentCursorPosition);
 
     DrawHUD(console);
